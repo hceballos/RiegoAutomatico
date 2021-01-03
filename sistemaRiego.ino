@@ -9,8 +9,8 @@ const int pin = 13;
 #define HOUR (60*MINUTE)
 
 
-    const char* ssid = "ITA-2";
-    const char* password = "01-17-AZ-!";
+const char* ssid = "ITA-2";
+const char* password = "01-17-AZ-!";
 
 uint8_t connection_state = 0;
 uint16_t reconnect_interval = 10000;
@@ -60,13 +60,6 @@ void Awaits()
     }
 }
 
-
-void loop1()
-{
-  Serial.println("MENSAJE DE PRUEBAAA ");
-} 
-
-
 void setup()
 {
     Serial.begin(115200);
@@ -81,8 +74,8 @@ void setup()
         Awaits();          // constantly trying to connect
 
     EMailSender::EMailMessage message;
-    message.subject = "Albahaca 2: " + myString + "% humedad";
-    message.message = "La humedad de la tierra de la Albahaca es : " + myString;
+    message.subject = "Albahaca : " + myString + "% humedad";
+    message.message = "La humedad de la tierra de la Albahaca es : " + myString + ", se regará su albahaca.";
 
     EMailSender::Response resp = emailSend.send("ceballosaviles@gmail.com", message);
 
@@ -90,31 +83,29 @@ void setup()
     Serial.println(resp.status);
     Serial.println(resp.code);
     Serial.println(resp.desc);
-    loop1();
 }
-
-
 
 void loop() {
   delay(1000);
   int lectura = analogRead(A0);
   Serial.print(lectura);
-  
   int lecturaPorcentaje = map(lectura, 700, 100, 0, 100);
   
   if (lecturaPorcentaje <=60){
     Serial.print("La humedad es del: ");
     Serial.print(lecturaPorcentaje);
     Serial.println("%");
-    digitalWrite(13, HIGH);
-    delay(3000);
-    digitalWrite(13, LOW); 
-    delay(1000);
+    digitalWrite(pin, HIGH);
+    delay(2000);
+    digitalWrite(pin, LOW); 
+    //delay(5000);
     setup();
     delay (1*HOUR) ;
+    delay (1*HOUR) ;
+    delay (1*HOUR) ;    
   }
   else{
-    digitalWrite(13, LOW);
+    digitalWrite(pin, LOW);
     Serial.print("La humedad es del: ");
     Serial.print(lecturaPorcentaje);
     Serial.println("%");

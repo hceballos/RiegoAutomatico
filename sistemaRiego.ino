@@ -100,9 +100,7 @@ void loop() {
     digitalWrite(pin, LOW); 
     //delay(5000);
     setup();
-    delay (1*HOUR) ;
-    delay (1*HOUR) ;
-    delay (1*HOUR) ;    
+    delay (3*HOUR);    
   }
   else{
     digitalWrite(pin, LOW);

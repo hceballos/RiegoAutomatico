@@ -15,7 +15,7 @@ const char* password = "01-17-AZ-!";
 uint8_t connection_state = 0;
 uint16_t reconnect_interval = 10000;
 
-EMailSender emailSend("c0x08266@gmail.com", "angamos2270");
+EMailSender emailSend("c0x08266@gmail.com", "");
 
 uint8_t WiFiConnect(const char* nSSID = nullptr, const char* nPassword = nullptr)
 {
